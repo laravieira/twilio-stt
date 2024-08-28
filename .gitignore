@@ -1,3 +1,5 @@
 .idea
 node_modules
 .env
+service-account.json
+credentials.json
