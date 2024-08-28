@@ -1,12 +1,11 @@
-import WebSocket from 'ws'
 import express from 'express'
 import http from 'http'
 import cors from 'cors'
-import { onConnection } from './listeners'
 import router from './routes'
 import dotenv from 'dotenv'
 import ngrok from 'ngrok'
 import * as twilio from './twilio'
+import Websocket from './websocket'
 
 dotenv.config()
 
@@ -16,10 +15,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 const server = http.createServer(app)
-const wss = new WebSocket.Server({ server })
 
-// Handle Web Socket Connection
-wss.on('connection', onConnection)
+// Create WebSocket Server
+new Websocket(server)
 
 //Handle HTTP Request
 app.use(router)
