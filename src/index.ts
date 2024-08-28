@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import ngrok from 'ngrok'
 import * as twilio from './twilio'
 import Websocket from './websocket'
+import * as path from 'node:path'
 
 dotenv.config()
 
@@ -20,6 +21,7 @@ const server = http.createServer(app)
 new Websocket(server)
 
 //Handle HTTP Request
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(router)
 
 // Start the server
