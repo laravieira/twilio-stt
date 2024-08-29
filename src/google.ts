@@ -7,7 +7,7 @@ import StreamingRecognizeResponse = google.cloud.speech.v1.StreamingRecognizeRes
 import ISpeechRecognitionAlternative = google.cloud.speech.v1.ISpeechRecognitionAlternative
 
 class STT {
-  public static client = new speech.SpeechClient()
+  public static client = new speech.SpeechClient(process.env.GOOGLE_API_KEY ? { apiKey: process.env.GOOGLE_API_KEY } : undefined)
   public static stream: Pumpify|null = null
 
   public static initSTT(

@@ -8,8 +8,7 @@ ENV TWILIO_ACCOUNT_SID ''
 ENV TWILIO_AUTH_TOKEN ''
 ENV TWILIO_PHONE_NUMBER_SID ''
 ENV LANGUAGE_CODE 'en-US'
-ENV GOOGLE_APPLICATION_CREDENTIALS_FILE ''
-ENV GOOGLE_APPLICATION_CREDENTIALS 'service-account.json'
+ENV GOOGLE_API_KEY ''
 
 WORKDIR /app
 COPY . .
@@ -17,9 +16,6 @@ COPY . .
 RUN npm install
 RUN npm run build
 COPY src/templates dist/templates
-RUN rm -rf /app/src
-RUN rm -rf /app/node_modules
-RUN touch /app/service-account.json && echo $GOOGLE_APPLICATION_CREDENTIALS_FILE > /app/service-account.json
 
 EXPOSE $PORT
 
