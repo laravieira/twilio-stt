@@ -16,7 +16,7 @@ COPY . .
 
 RUN npm install
 RUN npm run build
-COPY /app/src/templates /app/dist/templates
+COPY src/templates dist/templates
 RUN rm -rf /app/src
 RUN rm -rf /app/node_modules
 RUN touch /app/service-account.json && echo $GOOGLE_APPLICATION_CREDENTIALS_FILE > /app/service-account.json
