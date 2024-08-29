@@ -11,7 +11,7 @@ import * as path from 'node:path'
 dotenv.config()
 
 // Check if all required environment variables are set
-if(process.env.NODE_ENV !== 'development') {
+if(process.env.ENVIRONMENT !== 'development') {
   if(!process.env.HOST)
     throw new Error('HOST is not set')
   if(!process.env.PHONE_NUMBER)
@@ -38,7 +38,7 @@ console.log(`Listening at port ${process.env.PORT || 8080}`)
 server.listen(process.env.PORT || 8080)
 
 // Start ngrok and update Twilio Voice URL with the ngrok URL
-if(process.env.NODE_ENV !== 'development') {
+if(process.env.ENVIRONMENT !== 'development') {
   const client = twilio.init()
   twilio.updateVoiceUrl(client, process.env.HOST || '')
 } else {
