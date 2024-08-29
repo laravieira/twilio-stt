@@ -2,6 +2,13 @@ import { Router } from 'express'
 
 const router = Router();
 
+router.get('/', (req, res) =>
+  res.render('index', {
+    phone: process.env.PHONE_NUMBER || '+1 (888) 888 8888',
+    ws_host: `wss://${req.headers.host}/`
+  })
+)
+
 router.get('/api', (req, res) => res.json({
   app: 'Twilio STT',
   description: 'A simple API to convert speech to text using Twilio Calls and Google Speech to Text',

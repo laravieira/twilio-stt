@@ -7,7 +7,7 @@
 </head>
 <body class="container is-max-tablet is-full-height">
     <div class="notification is-primary mt-6 mb-6 is-flex is-align-items-center is-justify-content-center">
-        You can call&nbsp;<strong>1-888-888-8888</strong>&nbsp;and start speaking.
+        You can call&nbsp;<a href="tel:+<%= phone?.replace(/\D/g, '') %>"><%= phone %></a>&nbsp;and start speaking.
     </div>
     <p class="title mt-6 mb-6 is-flex is-align-items-center is-justify-content-center" id="transcription-container">
         Transcription will appear here.
@@ -15,7 +15,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", event => {
-        webSocket = new WebSocket("ws://localhost:8080");
+        webSocket = new WebSocket("<%= ws_host %>");
         webSocket.onmessage = function(data) {
           const message = JSON.parse(data.data)
           if (message.event !== "transcription") return
